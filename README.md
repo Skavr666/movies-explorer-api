@@ -7,6 +7,6 @@
 
 IP 158.160.50.143
 
-Frontend in progress
+Frontend in progress...
 
 Backend https://api.skavr.nomoredomains.rocks

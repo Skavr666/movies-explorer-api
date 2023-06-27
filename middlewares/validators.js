@@ -41,6 +41,6 @@ module.exports.validateLogin = celebrate({
 
 module.exports.validateMovieId = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().hex().length(24).required(),
+    movieId: Joi.string().hex().length(24).required(),
   }),
 });

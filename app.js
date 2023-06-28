@@ -8,6 +8,7 @@ const auth = require('./middlewares/auth');
 const { validateUserCreation, validateLogin } = require('./middlewares/validators');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
+const errorsHandler = require('./middlewares/errorsHandler');
 
 const app = express();
 const { PORT = 3000, DATABASE = 'mongodb://0.0.0.0:27017/bitfilmsdb' } = process.env;
@@ -29,14 +30,7 @@ app.use(errorLogger);
 
 app.use(errors());
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-
-  res.status(statusCode).send({
-    message: statusCode === 500 ? 'Server error' : message,
-  });
-  return next();
-});
+app.use(errorsHandler);
 
 mongoose.connect(DATABASE, {});
 
